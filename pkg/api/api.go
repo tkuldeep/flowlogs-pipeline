@@ -37,6 +37,7 @@ const (
 	ConnTrackingRuleType  = "conn_tracking"
 	AddRegExIfRuleType    = "add_regex_if"
 	AddIfRuleType         = "add_if"
+	AssignIfRuleType      = "assign_if"
 	AddSubnetRuleType     = "add_subnet"
 	AddLocationRuleType   = "add_location"
 	AddServiceRuleType    = "add_service"

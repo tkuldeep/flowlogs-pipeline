@@ -112,11 +112,13 @@ Following is the supported API format for network transformations:
                      conn_tracking: set output field to value of parameters field only for new flows by matching template in input field
                      add_regex_if: add output field if input field satisfies regex pattern from parameters field
                      add_if: add output field if input field satisfies criteria from parameters field
+                     assign_if: assign custom value to output field if input field satisfies criteria from parameters field
                      add_subnet: add output subnet field from input field and prefix length from parameters field
                      add_location: add output location fields from input
                      add_service: add output network service field from input port and parameters protocol field
                      add_kubernetes: add output kubernetes fields from input
                  parameters: parameters specific to type
+                 assignee: value needs to assign to output field
          kubeConfigPath: path to kubeconfig file (optional)
          servicesFile: path to services file (optional, default: /etc/services)
          protocolsFile: path to protocols file (optional, default: /etc/protocols)

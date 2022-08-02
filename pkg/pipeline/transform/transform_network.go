@@ -95,6 +95,18 @@ func (n *Network) TransformEntry(inputEntry config.GenericMap) config.GenericMap
 				outputEntry[rule.Output] = outputEntry[rule.Input]
 				outputEntry[rule.Output+"_Evaluate"] = true
 			}
+		case api.TransformNetworkOperationName("AssignIf"):
+			expressionString := fmt.Sprintf("val %s", rule.Parameters)
+			expression, err := govaluate.NewEvaluableExpression(expressionString)
+			if err != nil {
+				log.Errorf("Can't evaluate AssignIf rule: %+v expression: %v. err %v", rule, expressionString, err)
+				continue
+			}
+			result, evaluateErr := expression.Evaluate(map[string]interface{}{"val": outputEntry[rule.Input]})
+			if evaluateErr == nil && result.(bool) {
+				outputEntry[rule.Output] = rule.Assignee
+				outputEntry[rule.Output+"_Evaluate"] = true
+			}
 		case api.TransformNetworkOperationName("AddSubnet"):
 			_, ipv4Net, err := net.ParseCIDR(fmt.Sprintf("%v%s", outputEntry[rule.Input], rule.Parameters))
 			if err != nil {
