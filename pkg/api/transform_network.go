@@ -28,6 +28,7 @@ type TransformNetworkOperationEnum struct {
 	ConnTracking  string `yaml:"conn_tracking" json:"conn_tracking" doc:"set output field to value of parameters field only for new flows by matching template in input field"`
 	AddRegExIf    string `yaml:"add_regex_if" json:"add_regex_if" doc:"add output field if input field satisfies regex pattern from parameters field"`
 	AddIf         string `yaml:"add_if" json:"add_if" doc:"add output field if input field satisfies criteria from parameters field"`
+	AssignIf      string `yaml:"assign_if" json:"assign_if" doc:"assign custom value to output field if input field satisfies criteria from parameters field"`
 	AddSubnet     string `yaml:"add_subnet" json:"add_subnet" doc:"add output subnet field from input field and prefix length from parameters field"`
 	AddLocation   string `yaml:"add_location" json:"add_location" doc:"add output location fields from input"`
 	AddService    string `yaml:"add_service" json:"add_service" doc:"add output network service field from input port and parameters protocol field"`
@@ -43,6 +44,7 @@ type NetworkTransformRule struct {
 	Output     string `yaml:"output,omitempty" json:"output,omitempty" doc:"entry output field"`
 	Type       string `yaml:"type,omitempty" json:"type,omitempty" enum:"TransformNetworkOperationEnum" doc:"one of the following:"`
 	Parameters string `yaml:"parameters,omitempty" json:"parameters,omitempty" doc:"parameters specific to type"`
+	Assignee   string `yaml:"assignee,omitempty" json:"assignee,omitempty" doc:"value needs to assign to output field"`
 }
 
 type NetworkTransformRules []NetworkTransformRule
